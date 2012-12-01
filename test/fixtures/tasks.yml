@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  reward: 9.99
+  urgent: false
+  user_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  reward: 9.99
+  urgent: false
+  user_id: 1
