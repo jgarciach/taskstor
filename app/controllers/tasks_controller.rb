@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_filter :authenticate_user!, only: :new
+
   # GET /tasks
   # GET /tasks.json
   def index
@@ -35,12 +37,18 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+    if !owner?(@task) 
+      respond_to do |format|
+        format.html { redirect_to :back, notice: "You're not the owner" }
+      end
+    end
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
     @task = Task.new(params[:task])
+    @task.user_id = current_user.id
 
     respond_to do |format|
       if @task.save
@@ -58,13 +66,19 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
 
-    respond_to do |format|
-      if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+    if owner?(@task)
+      respond_to do |format|
+        if @task.update_attributes(params[:task])
+          format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @task.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to :back, notice: "You're not the owner." }
       end
     end
   end
@@ -73,11 +87,22 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task = Task.find(params[:id])
-    @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url }
-      format.json { head :no_content }
+      if owner?(@task)
+        @task.destroy
+        format.html { redirect_to tasks_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to :back, notice: "You're not the owner." }
+        format.json { head :no_content } 
+      end
     end
   end
+  
+  private
+  def owner? task
+    current_user.id == task.user_id
+  end
+
 end
