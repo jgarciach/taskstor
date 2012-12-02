@@ -16,8 +16,8 @@
     <% @urgent_tasks.each do |task| %>
       <tr>
         <td><i class="icon-fire"></i></td>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
+        <td><%= link_to task.title, task_path(task) %></td>
+        <td><%= truncate(task.description, length: 50, separator: ' ') %></td>
         <td><%= task.reward %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -33,8 +33,8 @@
     <% @not_urgent_tasks.each do |task| %>
       <tr>
         <td></td>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
+        <td><%= link_to task.title, task_path(task) %></td>
+        <td><%= truncate(task.description, length: 50, separator: ' ') %></td>
         <td><%= task.reward %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
