@@ -3,4 +3,5 @@ class Task < ActiveRecord::Base
   validates :title, :reward, :description, presence: true
   scope :urgent, where(urgent: true)
   scope :not_urgent, where(urgent: false)
+  belongs_to :user
 end
