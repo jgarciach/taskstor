@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @tasks.urgent.each do |task| %>
+    <% @urgent_tasks.each do |task| %>
       <tr>
         <td><i class="icon-fire"></i></td>
         <td><%= task.title %></td>
@@ -30,7 +30,7 @@
         </td>
       </tr>
     <% end %>
-    <% @tasks.not_urgent.each do |task| %>
+    <% @not_urgent_tasks.each do |task| %>
       <tr>
         <td></td>
         <td><%= task.title %></td>

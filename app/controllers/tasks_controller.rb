@@ -5,6 +5,8 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.all
+    @urgent_tasks = Task.urgent
+    @not_urgent_tasks = Task.not_urgent
 
     respond_to do |format|
       format.html # index.html.erb
