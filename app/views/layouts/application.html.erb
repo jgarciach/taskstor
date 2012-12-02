@@ -47,6 +47,9 @@
           </a>
           <a class="brand" href="/">TaskBoard</a>
           <div class="container nav-collapse">
+            <ul class="nav">
+              <li><a class="help-button">Help <i class="icon-question-sign"></i></a></li>
+            </ul>
             <ul class="nav pull-right">
               <% if user_signed_in? %>
                 <li class="divider-vertical"></li>
@@ -67,6 +70,12 @@
 
     <div class="container">
         <div class="row">
+          <div class="span12 help-text well" style="display: none;">
+            <h2>Help Text</h2>
+            <p>Here is some sample help text to be change later.</p>
+          </div>
+        </div>
+        <div class="row">
           <div class="span12">
              <%= yield %>
           </div>      
@@ -83,6 +92,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "viewHelp" %>
 
   </body>
 </html>
