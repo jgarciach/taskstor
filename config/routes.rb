@@ -1,11 +1,15 @@
 Taskboard::Application.routes.draw do
-  devise_for :users
+  get "static/confirmation"
+
+  get "static/about"
+
+  get "registrations/index"
+
+  devise_for :users, controllers: { registrations: "registrations" }
 
   resources :tasks
 
   resources :users
-
-  get 'users/confirmation_email'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
