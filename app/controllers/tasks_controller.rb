@@ -2,8 +2,9 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!, only: [ :new, :accept, :complete ]
 
   def accept
-    @task = Task.find(params[:id])
-
+    @task = Task.find(params[:task_id])
+    @task.update_attributes(status: "in_progress", runner_id: current_user.id)
+    
     respond_to do |format|
       format.html { redirect_to :back }
       format.json { render json: @task }
@@ -12,7 +13,8 @@ class TasksController < ApplicationController
 
   def complete
     @task = Task.find(params[:task_id])
-    
+    @task.update_attributes(status: "completed")
+
     respond_to do |format|
       format.html { redirect_to :back }
       format.json { render json: @task }
