@@ -8,8 +8,8 @@ Taskboard::Application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
 
   resources :tasks do
-    post "accept"
-    post "complete"
+    get "accept"
+    get "complete"
   end
 
   resources :users
