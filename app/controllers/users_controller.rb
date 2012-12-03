@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  # GET /users/confirmation_email
+  def confirmation_email
+    # confirmation_email.html.erb
+  end
+
   # GET /users
   # GET /users.json
   def index
