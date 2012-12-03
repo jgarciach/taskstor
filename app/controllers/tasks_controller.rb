@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   def accept
     @task = Task.find(params[:id])
-    @task.accept(current_user)
+    Task.update(params[:id], status: "in_progess", runner_id: current_user.id)
 
     respond_to do |format|
       format.html { redirect_to :back }
@@ -13,7 +13,7 @@ class TasksController < ApplicationController
 
   def complete
     @task = Task.find(params[:id])
-    @task.complete
+    Task.update(params[:id], status: "completed")
     
     respond_to do |format|
       format.html { redirect_to :back }
