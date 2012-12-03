@@ -1,20 +1,12 @@
 class TasksController < ApplicationController
-  before_filter :authenticate_user!, only: [ :new, :accept, :complete ]
+  before_filter :authenticate_user!, only: :new
 
+  # GET /tasks/1
+  # GET /tasks/1.json
   def accept
     @task = Task.find(params[:id])
     @task.accept(current_user)
 
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.json { render json: @task }
-    end
-  end
-
-  def complete
-    @task = Task.find(params[:id])
-    @task.complete
-    
     respond_to do |format|
       format.html { redirect_to :back }
       format.json { render json: @task }

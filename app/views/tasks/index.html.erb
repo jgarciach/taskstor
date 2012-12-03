@@ -29,6 +29,8 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
+          <%= link_to "Accept Task", task_accept_path(task), class: "btn btn-mini btn-primary" %>
+          <%= link_to "Complete Task", task_complete_path(task), class: "btn btn-mini btn-success" %>
         </td>
       </tr>
     <% end %>
@@ -47,6 +49,8 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
+          <%= link_to "Accept Task", task_accept_path(task), class: "btn btn-mini btn-primary" %>
+          <%= link_to "Complete Task", task_complete_path(task), class: "btn btn-mini btn-success" %>
         </td>
       </tr>
     <% end %>
