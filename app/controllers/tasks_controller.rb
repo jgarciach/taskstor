@@ -72,6 +72,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @task.user_id = current_user.id
+    @task.status = "unclaimed"
 
     respond_to do |format|
       if @task.save
