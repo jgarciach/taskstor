@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :name, :phone
   validates :email, :phone, uniqueness: true
+
   has_many :posted_tasks, class_name: "Task", foreign_key: :user_id, dependent: :destroy
   has_many :accepted_tasks, class_name: "Task", foreign_key: :runner_id
 end

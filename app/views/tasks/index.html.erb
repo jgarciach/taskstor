@@ -10,6 +10,8 @@
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:reward) %></th>
       <th>Posted by</th>
+      <th>Runner</th>
+      <th>Status</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -21,6 +23,8 @@
         <td><%= truncate(task.description, length: 50, separator: ' ') %></td>
         <td><%= number_to_currency task.reward %></td>
         <td><%= task.owner.name %></td> 
+        <td><%= task.runner.name %></td> 
+        <td><%= task.status %></td> 
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_task_path(task), :class => 'btn btn-mini' %>
@@ -41,6 +45,8 @@
         <td><%= truncate(task.description, length: 50, separator: ' ') %></td>
         <td><%= number_to_currency task.reward %></td>
         <td><%= task.owner.name %></td>
+        <td><%= task.runner.name %></td> 
+        <td><%= task.status %></td> 
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_task_path(task), :class => 'btn btn-mini' %>
